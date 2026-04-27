@@ -1,0 +1,979 @@
+/* Reset básico para toda la página */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables CSS para una paleta de colores y tamaños consistente */
+:root {
+    --dark-brown: #3C2F2F; /* Fondo principal oscuro */
+    --medium-brown: #6F4E37; /* Marrón para tarjetas, acentos */
+    --light-brown-text: #A08B7A; /* Texto más suave */
+    --light-cream: #FDF4E3; /* Texto claro, fondos de elementos claros */
+    --accent-gold: #D4AF37; /* Dorado para acentos, botones primarios */
+    --secondary-button-bg: #8d7a6e; /* Color para botón secundario */
+
+    --navbar-height: 80px; /* Altura fija para la navbar */
+    --padding-section: 80px 5%; /* Padding general para secciones */
+    --gap-elements: 20px; /* Espaciado entre elementos */
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Segoe UI', sans-serif; /* Puedes importar una fuente de Google Fonts si lo deseas */
+    background-color: var(--dark-brown);
+    color: var(--light-cream); /* Color de texto por defecto para todo el body */
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+/* Contenedores para centrar contenido */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Botones genéricos */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--accent-gold);
+    color: var(--dark-brown); /* Texto oscuro en botón dorado */
+    padding: 12px 25px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #f7d75e; /* Un dorado un poco más claro al hover */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: var(--secondary-button-bg);
+    color: var(--light-cream);
+    padding: 12px 25px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #a6948a; /* Un tono más claro al hover */
+    transform: translateY(-2px);
+}
+
+
+/* --- Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%; /* Padding lateral */
+    background: var(--dark-brown); /* Mismo color que el fondo, o un tono más oscuro */
+    color: var(--light-cream);
+    box-shadow: var(--shadow-dark);
+    position: sticky; /* Sticky para que la navbar se quede arriba al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Asegura que esté por encima de otros contenidos */
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--light-cream); /* Asegura que el texto del logo sea claro */
+}
+
+.navbar .logo .navbar-logo-img {
+    height: 50px; /* Logo un poco más grande para la página principal */
+    width: auto;
+    vertical-align: middle;
+}
+
+/* Estilos para el menú de navegación */
+.navbar .nav-links {
+    display: flex; /* Por defecto, los enlaces están en fila */
+    align-items: center;
+    gap: 15px; /* Espacio entre los enlaces */
+}
+
+.navbar .nav-links a {
+    color: var(--light-cream);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap; /* Evita que los enlaces se rompan en múltiples líneas */
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links a:focus {
+    color: var(--accent-gold); /* Color dorado al pasar el mouse */
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.navbar .nav-links button {
+    padding: 8px 18px;
+    background: var(--accent-gold);
+    color: var(--dark-brown);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .nav-links button:hover {
+    background-color: #f7d75e;
+    transform: translateY(-2px);
+}
+
+/* Estilos para el ícono de hamburguesa */
+.hamburger-menu {
+    display: none; /* Oculto por defecto en escritorio */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 101; /* Asegura que esté por encima del menú colapsado */
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-cream);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animación de la hamburguesa a 'X' */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0; /* Desaparece la barra del medio */
+}
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    display: flex;
+    justify-content: center; /* Centra los items */
+    align-items: center;
+    padding: var(--padding-section);
+    min-height: calc(100vh - var(--navbar-height)); /* Ocupa la altura restante de la pantalla */
+    background-color: var(--dark-brown); /* Asegura el fondo */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    text-align: center; /* Centra el texto en general */
+    gap: 40px; /* Espacio entre el contenido y la imagen */
+}
+
+.hero-content {
+    flex: 1; /* Ocupa el espacio disponible */
+    min-width: 300px; /* Evita que el contenido se encoja demasiado */
+    text-align: left; /* Alinea el texto a la izquierda como en el diseño */
+    padding-right: 20px; /* Espacio con la imagen */
+}
+
+.hero-content h1 {
+    font-size: 4em; /* Título muy grande */
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    color: var(--light-cream);
+    margin-bottom: 30px;
+    max-width: 500px; /* Limita el ancho del párrafo */
+}
+
+.hero-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    animation: floatImage 3s ease-in-out infinite; /* Animación sutil */
+}
+
+@keyframes floatImage {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+
+/* --- Menu Section --- */
+.menu {
+    padding: var(--padding-section);
+    background-color: var(--dark-brown); /* Mismo fondo */
+    text-align: center;
+}
+
+.menu h2 {
+    font-size: 2.8em;
+    color: var(--accent-gold);
+    margin-bottom: 50px;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columnas en escritorio, se ajustan */
+    gap: var(--gap-elements);
+    max-width: 1000px; /* Limita el ancho del grid */
+    margin: 0 auto; /* Centra el grid */
+}
+
+.producto {
+    background: var(--medium-brown); /* Fondo de la tarjeta del producto */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-light);
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto:hover {
+    transform: translateY(-5px); /* Efecto de elevación al hover */
+    box-shadow: var(--shadow-dark);
+}
+
+.producto img {
+    width: 150px; /* Tamaño de la imagen del producto */
+    height: 150px;
+    object-fit: cover; /* Recorta la imagen para llenar el espacio */
+    border-radius: 50%; /* Si quieres imágenes circulares como en algunos diseños de menú */
+    margin-bottom: 15px;
+    border: 3px solid var(--accent-gold); /* Borde alrededor de la imagen */
+}
+
+.producto h3 {
+    font-size: 1.8em;
+    color: var(--light-cream);
+    margin-bottom: 10px;
+}
+
+.producto p {
+    font-size: 1em;
+    color: var(--light-brown-text);
+    margin-bottom: 15px;
+}
+
+.producto .precio {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--accent-gold);
+    margin-top: auto; /* Empuja el precio y el botón hacia abajo */
+    margin-bottom: 15px;
+}
+
+.producto .agregar-btn {
+    padding: 10px 20px;
+    background-color: var(--accent-gold);
+    color: var(--dark-brown);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.producto .agregar-btn:hover {
+    background-color: #f7d75e;
+    transform: translateY(-2px);
+}
+
+/* --- Customer Reviews Section --- */
+.customer-reviews {
+    padding: var(--padding-section);
+    background-color: var(--medium-brown); /* Fondo para las reseñas */
+    text-align: center;
+    color: var(--light-cream);
+}
+
+.customer-reviews h2 {
+    font-size: 2.8em;
+    color: var(--light-cream);
+    margin-bottom: 50px;
+}
+
+.review-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--gap-elements);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.review-box {
+    background: rgba(0, 0, 0, 0.2); /* Fondo semi-transparente para la caja de reseña */
+    padding: 30px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-light);
+    flex: 1; /* Permite que las cajas se distribuyan */
+    min-width: 300px; /* Tamaño mínimo para cada caja de reseña */
+    max-width: 450px;
+    text-align: left;
+}
+
+.review-box p {
+    font-style: italic;
+    margin-bottom: 25px;
+    color: var(--light-cream);
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.reviewer-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-gold);
+}
+
+.reviewer-info h3 {
+    font-size: 1.4em;
+    color: var(--accent-gold);
+}
+
+.reviewer-info span {
+    font-size: 0.9em;
+    color: var(--light-brown-text);
+}
+
+/* --- About Us Section --- */
+.about-us-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-section);
+    background-color: var(--dark-brown);
+    flex-wrap: wrap;
+    gap: 50px; /* Más espacio entre imagen y contenido */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-us-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-md); /* Bordes redondeados para la imagen */
+    box-shadow: var(--shadow-dark);
+}
+
+.about-us-content {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+    color: var(--light-cream);
+}
+
+.about-us-content h2 {
+    font-size: 2.8em;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+}
+
+.about-us-content h3 {
+    font-size: 1.8em;
+    color: var(--light-cream);
+    margin-bottom: 15px;
+}
+
+.about-us-content p {
+    font-size: 1.1em;
+    color: var(--light-brown-text);
+    margin-bottom: 20px;
+}
+
+
+/* --- Contact Info Section --- */
+.contact-info-section {
+    padding: var(--padding-section);
+    background-color: var(--medium-brown);
+    text-align: center;
+    color: var(--light-cream);
+}
+
+.contact-info-section h2 {
+    font-size: 2.8em;
+    color: var(--light-cream);
+    margin-bottom: 30px;
+}
+
+.contact-info-section p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.contact-info-section a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-section a:hover {
+    color: #f7d75e;
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--dark-brown);
+    color: var(--light-cream);
+    border-radius: 50%;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--accent-gold);
+    color: var(--dark-brown);
+    transform: translateY(-3px);
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-brown); /* Mismo fondo que el body */
+    color: var(--light-cream);
+    padding: 40px 5%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: var(--gap-elements);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--light-cream);
+}
+
+.footer-logo .navbar-logo-img { /* Reutiliza el estilo del logo de la navbar para el footer */
+    height: 40px;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-nav a {
+    color: var(--light-cream);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: var(--accent-gold);
+}
+
+.copyright {
+    font-size: 0.9em;
+    color: var(--light-brown-text);
+}
+
+
+/* --- Mi Pedido Sidebar/Modal --- */
+.pedido-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0; /* Empieza fuera de la pantalla a la derecha */
+    width: 350px; /* Ancho del sidebar */
+    height: 100%;
+    background-color: var(--medium-brown); /* Fondo del sidebar */
+    color: var(--light-cream);
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+    transform: translateX(100%); /* Lo oculta fuera de la vista */
+    transition: transform 0.4s ease-out; /* Animación de entrada/salida */
+    z-index: 1001; /* Más alto que el navbar y el overlay */
+    display: flex;
+    flex-direction: column;
+}
+
+.pedido-sidebar.show {
+    transform: translateX(0); /* Lo mueve a la vista */
+}
+
+.close-btn-pedido {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--light-cream);
+    transition: color 0.3s ease;
+}
+
+.close-btn-pedido:hover {
+    color: var(--accent-gold);
+}
+
+.pedido-sidebar h2 {
+    font-size: 2.2em;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#listaPedido {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    flex-grow: 1; /* Permite que la lista ocupe el espacio disponible */
+    overflow-y: auto; /* Agrega scroll si la lista es muy larga */
+}
+
+#listaPedido li {
+    background: rgba(0, 0, 0, 0.2); /* Fondo para cada ítem del pedido */
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+#listaPedido li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--light-cream);
+    transition: transform 0.2s ease;
+}
+
+#listaPedido li button:hover {
+    transform: scale(1.1);
+    color: #ff6347; /* Un color más vivo para el eliminar */
+}
+
+#total {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.pedido-sidebar .btn-primary,
+.pedido-sidebar .btn-secondary {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+/* Overlay (para oscurecer el fondo cuando el sidebar está abierto) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000; /* Por debajo del sidebar, pero encima del resto del contenido */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- Media Queries (Responsividad) --- */
+
+/* Teléfonos (hasta 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; /* Mantener logo y hamburguesa en la misma fila */
+        justify-content: space-between; /* Espacio entre logo y hamburguesa */
+        align-items: center;
+        padding: 15px 5%;
+    }
+
+    .navbar .logo {
+        font-size: 24px; /* Ajusta el tamaño del logo en móviles */
+    }
+
+    .navbar .logo .navbar-logo-img {
+        height: 40px; /* Ajusta el tamaño de la imagen del logo */
+    }
+
+    /* Mostrar el ícono de hamburguesa */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Ocultar los enlaces de navegación por defecto */
+    .navbar .nav-links {
+        position: fixed;
+        top: var(--navbar-height); /* Debajo de la navbar */
+        left: 0;
+        width: 100%;
+        height: calc(100% - var(--navbar-height)); /* Ocupa el resto de la altura */
+        background-color: var(--dark-brown); /* Mismo fondo que la navbar */
+        flex-direction: column; /* Apilar enlaces verticalmente */
+        justify-content: flex-start; /* Alinear enlaces arriba */
+        align-items: flex-start; /* Alinear a la izquierda */
+        padding: 20px 5%;
+        transform: translateX(-100%); /* Ocultar el menú fuera de la pantalla */
+        transition: transform 0.3s ease-in-out;
+        z-index: 99; /* Por debajo de la navbar, pero por encima del contenido */
+        overflow-y: auto; /* Para permitir scroll si el menú es muy largo */
+    }
+
+    /* Mostrar el menú cuando tenga la clase 'active' */
+    .navbar .nav-links.active {
+        transform: translateX(0); /* Deslizar el menú a la vista */
+    }
+
+    .navbar .nav-links a {
+        margin: 15px 0; /* Más espacio vertical entre enlaces */
+        font-size: 1.4em; /* Enlaces más grandes */
+        width: 100%; /* Ocupar todo el ancho disponible */
+        text-align: left; /* Alinear texto a la izquierda */
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
+    }
+
+    .navbar .nav-links a:last-of-type {
+        border-bottom: none; /* No poner separador en el último enlace */
+    }
+
+    .navbar .nav-links button {
+        width: 100%; /* Botón ocupa todo el ancho */
+        margin-top: 20px; /* Espacio extra para el botón */
+    }
+
+    .hero-section {
+        flex-direction: column;
+        padding: 50px 5%;
+        min-height: auto;
+    }
+    .hero-content {
+        padding-right: 0;
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    .hero-image img {
+        max-width: 80%; /* Reduce el tamaño de la imagen en móviles */
+    }
+
+    .menu h2,
+    .customer-reviews h2,
+    .about-us-content h2,
+    .contact-info-section h2 {
+        font-size: 2.2em; /* Títulos más pequeños en móvil */
+    }
+
+    .productos {
+        grid-template-columns: 1fr; /* Una columna para productos en móvil */
+        max-width: 350px;
+    }
+
+    .review-box {
+        min-width: 280px; /* Asegura un tamaño mínimo para la caja de reseña */
+        padding: 20px;
+    }
+
+    .about-us-section {
+        flex-direction: column;
+        padding: 50px 5%;
+    }
+    .about-us-content {
+        text-align: center;
+    }
+
+    .about-us-image {
+        order: -1; /* Mueve la imagen arriba del contenido en móvil */
+        margin-bottom: 30px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 5%;
+    }
+    .footer-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-nav a {
+        margin: 0; /* Quita márgenes horizontales cuando están en columna */
+    }
+
+    .pedido-sidebar {
+        width: 100%; /* Ocupa todo el ancho en móvil */
+        max-width: 100%; /* Asegura que no se desborde */
+    }
+}
+
+/* Tabletas (769px a 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .navbar {
+        padding: 15px 3%;
+    }
+    .hero-content h1 {
+        font-size: 3.5em;
+    }
+    .hero-content p {
+        font-size: 1.3em;
+    }
+    .productos {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tabletas */
+    }
+    .about-us-section {
+        flex-direction: row; /* Vuelve a poner la imagen al lado del texto */
+        gap: 30px;
+    }
+    .about-us-image {
+        order: unset; /* Restaura el orden */
+        margin-bottom: 0;
+    }
+    /* Asegura que el menú de hamburguesa esté oculto en tabletas/escritorio */
+    .hamburger-menu {
+        display: none;
+    }
+    /* Asegura que el menú de navegación sea flex en tabletas/escritorio */
+    .navbar .nav-links {
+        display: flex;
+        position: static; /* Quita el posicionamiento absoluto/fijo */
+        transform: translateX(0); /* Asegura que siempre esté visible */
+        height: auto;
+        flex-direction: row; /* Vuelve a la fila horizontal */
+        padding: 0;
+        background-color: transparent; /* Fondo transparente */
+    }
+    .navbar .nav-links a {
+        margin: 0 15px; /* Restaura márgenes horizontales */
+        font-size: 1em; /* Restaura tamaño de fuente */
+        width: auto;
+        text-align: left;
+        padding: 0;
+        border-bottom: none; /* Elimina el separador */
+    }
+    .navbar .nav-links button {
+        width: auto; /* Restaura ancho del botón */
+        margin-top: 0; /* Restaura margen */
+    }
+}
+
+/* Escritorio (más de 1024px) - Asegura el layout original */
+@media (min-width: 1025px) {
+    .navbar {
+        padding: 20px 5%;
+    }
+    .hero-content {
+        padding-right: 50px;
+    }
+    .productos {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en escritorio */
+    }
+    .review-container {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Más espacio para las reseñas */
+    }
+    .about-us-section {
+        flex-direction: row;
+    }
+    /* Asegura que el menú de hamburguesa esté oculto en escritorio */
+    .hamburger-menu {
+        display: none;
+    }
+    /* Asegura que el menú de navegación sea flex en escritorio */
+    .navbar .nav-links {
+        display: flex;
+        position: static;
+        transform: translateX(0);
+        height: auto;
+        flex-direction: row;
+        padding: 0;
+        background-color: transparent;
+    }
+    .navbar .nav-links a {
+        margin: 0 15px;
+        font-size: 1em;
+        width: auto;
+        text-align: left;
+        padding: 0;
+        border-bottom: none;
+    }
+    .navbar .nav-links button {
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+/* --- Toast Notifications (Mensajes de Notificación) --- */
+#toastContainer {
+    position: fixed;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    right: 20px; /* Distancia desde la parte derecha */
+    z-index: 10000; /* Asegura que esté por encima de todo */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los toasts a la derecha */
+    gap: 10px; /* Espacio entre múltiples toasts */
+}
+
+.toast {
+    background-color: rgba(60, 47, 47, 0.95); /* Color de fondo del toast (oscuro semitransparente) */
+    color: var(--light-cream); /* Color del texto */
+    padding: 15px 20px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 300px; /* Ancho máximo del toast */
+    text-align: center;
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateX(100%); /* Inicialmente fuera de la pantalla a la derecha */
+    animation: slideIn 0.5s forwards; /* Solo animación de entrada aquí */
+}
+
+/* Variaciones de color para diferentes tipos de mensajes (opcional) */
+.toast.success {
+    background-color: rgba(67, 160, 71, 0.95); /* Verde para éxito */
+}
+
+.toast.error {
+    background-color: rgba(229, 57, 53, 0.95); /* Rojo para error */
+}
+
+.toast.info {
+    background-color: rgba(33, 150, 243, 0.95); /* Azul para información */
+}
+
+/* Keyframes para las animaciones del toast */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Media query para móviles: posicionar los toasts en el centro inferior */
+@media (max-width: 768px) {
+    #toastContainer {
+        bottom: 15px;
+        left: 50%;
+        right: auto; /* Desactiva right */
+        transform: translateX(-50%); /* Centra horizontalmente */
+        align-items: center; /* Centra los toasts si hay varios */
+    }
+    .toast {
+        max-width: 90%; /* Ocupa casi todo el ancho en móvil */
+        transform: translateY(100%); /* Viene desde abajo */
+        animation: slideInMobile 0.5s forwards; /* Solo animación de entrada para móvil */
+    }
+
+    @keyframes slideInMobile {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeOutMobile {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+    }
+}

@@ -1,0 +1,364 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colores para el login. Puedes ajustar estos si tienes una paleta más definida */
+  --primary-brand-color: #6f4e37; /* Marrón café principal */
+  --accent-color: #ffc107;      /* Amarillo/Naranja para acentos (botones, hover) */
+  --text-color-light: #fff;
+  --text-color-dark: #333;
+  --bg-navbar-alpha: rgba(0, 0, 0, 0.6);
+  --bg-login-box-alpha: rgba(255, 255, 255, 0.15);
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+}
+
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    overflow-x: hidden; /* Esto está bien para evitar el scroll horizontal */
+    background-color: var(--primary-brand-color); /* Color de respaldo si la imagen no carga */
+    background-image: url(Imagenes/cafeteria.jpg); /* ¡Asegúrate de que esta ruta sea correcta! */
+    background-size: cover; /* Escala la imagen para cubrir el área */
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    /* --- FIN: PROPIEDADES PARA LA IMAGEN DE FONDO --- */
+}
+
+/* Fondo */
+.background {
+  background-color: var(--primary-brand-color); /* Usamos el color de la marca como fondo */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Envía el fondo detrás de todo */
+  filter: brightness(0.7) blur(2px); /* Mantén el filtro si quieres el efecto de oscuridad/desenfoque sobre el color */
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: var(--bg-navbar-alpha);
+  color: var(--text-color-light);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra suave para la navbar */
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif; /* <-- Añade esta línea */
+}
+
+.navbar .logo .navbar-logo-img {
+  height: 40px; /* Ajusta la altura de tu logo de la navbar */
+  width: auto;
+  vertical-align: middle;
+}
+
+.navbar nav a {
+  color: var(--text-color-light);
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease; /* Transición suave para el hover */
+}
+
+.navbar nav a:hover,
+.navbar nav a:focus { /* Añadido focus para accesibilidad */
+  color: var(--accent-color);
+  outline: none; /* Remueve el outline por defecto, si aplicas uno personalizado */
+}
+
+.navbar button {
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--text-color-light);
+  border: 2px solid var(--text-color-light);
+  border-radius: var(--border-radius-sm);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar button:hover,
+.navbar button:focus { /* Añadido focus para accesibilidad */
+  background: var(--text-color-light);
+  color: var(--primary-brand-color);
+  border-color: var(--text-color-light);
+  outline: none;
+}
+
+/* Login Box */
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Inicialmente oculto y escalado a 0 */
+  width: 350px;
+  background: var(--bg-login-box-alpha);
+  backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del modal */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde suave */
+  border-radius: var(--border-radius-md);
+  padding: 30px;
+  color: var(--text-color-light);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transición con un efecto de rebote */
+  box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Sombra más pronunciada */
+  z-index: 1000; /* Asegura que esté por encima de todo */
+}
+
+.login-box.show {
+  transform: translate(-50%, -50%) scale(1); /* Muestra el modal escalándolo a 1 */
+  opacity: 1;
+}
+
+.login-box .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text-color-light);
+  transition: color 0.3s ease;
+}
+
+.login-box .close-btn:hover {
+  color: var(--accent-color);
+}
+
+.login-box .login-title {
+    text-align: center;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 28px;
+    font-family: 'Poppins', sans-serif; /* <-- Añade esta línea */
+}
+
+.login-box .login-title .login-icon {
+  width: 40px; /* Ajusta el tamaño del icono dentro del login box */
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Formulario */
+.login-box form label {
+  display: block; /* Asegura que la etiqueta esté en su propia línea */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px; /* Más espacio entre campos */
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 15px; /* Más padding para una mejor estética */
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7); /* Borde inferior más suave */
+  background: transparent;
+  color: var(--text-color-light);
+  outline: none;
+  font-size: 16px;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-bottom-color: var(--accent-color); /* Borde inferior de acento al enfocar */
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Placeholder más visible */
+}
+
+.input-group .icon {
+  position: absolute;
+  right: 15px; /* Ajusta la posición del icono */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em; /* Haz el icono un poco más grande */
+}
+
+/* Opciones */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin: 15px 0 25px 0; /* Más espacio alrededor de las opciones */
+}
+
+.options label {
+    margin-bottom: 0; /* Anula el margin-bottom del label general */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal; /* No negrita */
+}
+
+.options input[type="checkbox"] {
+  accent-color: var(--accent-color); /* Color del checkbox */
+}
+
+.options a {
+  color: var(--accent-color); /* Enlaces de opciones con color de acento */
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.options a:hover,
+.options a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.login-box button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent-color); /* Botón de login con color de acento */
+  border: none;
+  color: var(--text-color-dark); /* Texto oscuro en botón claro */
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-box button[type="submit"]:hover {
+  background: #e6b000; /* Un poco más oscuro en hover */
+  transform: translateY(-2px); /* Efecto leve de elevación */
+}
+
+.login-box p {
+  text-align: center;
+  margin-top: 20px; /* Más espacio después del botón */
+  font-size: 14px;
+}
+
+.login-box p a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.login-box p a:hover {
+  text-decoration: underline;
+}
+
+/* Overlay para oscurecer el fondo cuando el modal está abierto */
+.overlay-login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+  z-index: 999; /* Por debajo del modal pero encima del contenido */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.overlay-login.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* Media Queries para responsividad del login box */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 15px 20px; /* Ajusta padding para móviles */
+    flex-direction: column; /* Apila elementos en la navbar */
+    gap: 15px;
+    text-align: center;
+  }
+  .navbar nav {
+    margin-top: 10px;
+  }
+  .navbar nav a {
+    margin: 0 8px; /* Menos margen en enlaces */
+  }
+
+  .login-box {
+    width: 90%; /* Más ancho en móviles */
+    padding: 20px;
+  }
+
+  .login-box .login-title {
+    font-size: 24px; /* Título un poco más pequeño */
+  }
+
+  .login-box .login-title .login-icon {
+    width: 30px; /* Icono un poco más pequeño */
+  }
+}
+
+/* --- SPLASH SCREEN (PANTALLA DE BIENVENIDA) --- */
+
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Desactiva clics cuando está oculto para que no interfiera */
+}
+
+.splash-logo {
+    width: 150px; /* Tamaño inicial del logo */
+    height: auto;
+    margin-bottom: 20px;
+    /* Animaciones: logoFadeIn (aparece), logoPulse (efecto de pulsación) */
+    animation: logoFadeIn 1s ease-out forwards, logoPulse 2s infinite alternate 1s;
+}
+
+.splash-text {
+    font-family: 'Poppins', sans-serif; /* Usa tu fuente de título Poppins */
+    font-size: 3em; /* Tamaño del texto */
+    color: var(--text-color-light); /* Color del texto */
+    opacity: 0; /* Inicialmente oculto */
+    transform: translateY(20px); /* Ligeramente desplazado hacia abajo */
+    /* Animación: textSlideUp (aparece deslizándose hacia arriba) */
+    animation: textSlideUp 1s ease-out forwards 0.5s; /* 0.5s de retraso */
+}
+
+/* Animaciones Keyframes */
+@keyframes logoFadeIn {
+    from { opacity: 0; transform: scale(0.8); } /* Empieza pequeño y transparente */
+    to { opacity: 1; transform: scale(1); }    /* Termina tamaño normal y visible */
+}
+
+@keyframes logoPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); } /* Ligeramente más grande y luego vuelve */
+}
+
+@keyframes textSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media query para adaptar el tamaño en móviles (hacerlo más pequeño) */
+@media (max-width: 600px) {
+    .splash-logo {
+        width: 100px; /* Logo más pequeño en móvil */
+    }
+    .splash-text {
+        font-size: 2em; /* Texto más pequeño en móvil */
+    }
+}

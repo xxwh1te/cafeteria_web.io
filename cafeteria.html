@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería Rubén</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="Imagenes/R.jpg" alt="Logo Cafetería Rubén" class="navbar-logo-img">
+            RUBÉN
+        </div>
+
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#menu">Menú</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#resenas">Reseñas</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#" id="showPedido">Mi Pedido (<span id="cantidadItems">0</span>)</a>
+            <button class="btn-primary" id="logout">Cerrar Sesión</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h1>El Aroma que Despierta tus Sentidos</h1>
+                <p>Descubre el arte del café en cada taza. En Café Rubén, te ofrecemos una experiencia inigualable con granos seleccionados y un ambiente acogedor.</p>
+                <a href="#menu" class="btn-primary">Ver Menú</a>
+            </div>
+            <div class="hero-image">
+                <img src="Productos/cafe.avif" alt="Café recién hecho">
+            </div>
+        </section>
+
+        <section id="menu" class="menu">
+            <h2>Nuestros Productos Estrella</h2>
+            <div class="productos">
+                <div class="producto">
+                    <img src="Productos/cafe-expresso.webp" alt="Espresso Intenso">
+                    <h3>Espresso Intenso</h3>
+                    <p>Un shot concentrado con un sabor robusto y profundo.</p>
+                    <span class="precio">S/. 8.50</span>
+                    <button class="agregar-btn" data-nombre="Espresso Intenso" data-precio="8.50">Agregar</button>
+                </div>
+                <div class="producto">
+                    <img src="Productos/Late.avif" alt="Latte Cremoso">
+                    <h3>Latte Cremoso</h3>
+                    <p>La combinación perfecta de espresso, leche vaporizada y una fina capa de espuma.</p>
+                    <span class="precio">S/. 12.00</span>
+                    <button class="agregar-btn" data-nombre="Latte Cremoso" data-precio="12.00">Agregar</button>
+                </div>
+                <div class="producto">
+                    <img src="Productos/cafe-capuchino.jpg" alt="Capuccino Clásico">
+                    <h3>Capuccino Clásico</h3>
+                    <p>Tradicional con espresso, leche y una generosa capa de espuma de leche.</p>
+                    <span class="precio">S/. 11.00</span>
+                    <button class="agregar-btn" data-nombre="Capuccino Clásico" data-precio="11.00">Agregar</button>
+                </div>
+                <div class="producto">
+                    <img src="Productos/te chai late.jpg" alt="Té Chai Latte">
+                    <h3>Té Chai Latte</h3>
+                    <p>Una mezcla aromática de té negro, especias exóticas y leche caliente.</p>
+                    <span class="precio">S/. 10.50</span>
+                    <button class="agregar-btn" data-nombre="Té Chai Latte" data-precio="10.50">Agregar</button>
+                </div>
+                <div class="producto">
+                    <img src="Productos/pan.webp" alt="Croissant Fresco">
+                    <h3>Croissant Fresco</h3>
+                    <p>Perfecto para acompañar tu café, suave y recién horneado.</p>
+                    <span class="precio">S/. 6.00</span>
+                    <button class="agregar-btn" data-nombre="Croissant Fresco" data-precio="6.00">Agregar</button>
+                </div>
+                <div class="producto">
+                    <img src="Productos/tarta-de-chocolate-3088.jpg" alt="Tarta de Chocolate">
+                    <h3>Tarta de Chocolate</h3>
+                    <p>Intensa y deliciosa, para los amantes del chocolate.</p>
+                    <span class="precio">S/. 15.00</span>
+                    <button class="agregar-btn" data-nombre="Tarta de Chocolate" data-precio="15.00">Agregar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="resenas" class="customer-reviews">
+            <h2>Lo que Dicen Nuestros Clientes</h2>
+            <div class="review-container">
+                <div class="review-box">
+                    <p>"El mejor café que he probado en mucho tiempo. El ambiente es super acogedor y el servicio excelente."</p>
+                    <div class="reviewer-info">
+                        <img src="Imagenes/Avatar.webp" alt="Avatar Cliente 1" class="reviewer-avatar">
+                        <div>
+                            <h3>Ana G.</h3>
+                            <span>Amante del Café</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-box">
+                    <p>"Me encanta venir a estudiar aquí. Tienen una gran variedad de bebidas y postres, y el Wi-Fi es perfecto."</p>
+                    <div class="reviewer-info">
+                        <img src="Imagenes/avatar2.jpg" alt="Avatar Cliente 2" class="reviewer-avatar">
+                        <div>
+                            <h3>Carlos R.</h3>
+                            <span>Estudiante</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nosotros" class="about-us-section">
+            <div class="about-us-image">
+                <img src="Imagenes/salpicado.jpg" alt="Interior de la cafetería">
+            </div>
+            <div class="about-us-content">
+                <h2>Nuestra Historia</h2>
+                <h3>La Pasión por el Café</h3>
+                <p>En Café Rubén, creemos que una buena taza de café es mucho más que una bebida; es una experiencia. Fundada en 2020, nuestra misión ha sido ofrecer los granos más finos y un ambiente donde cada cliente se sienta como en casa.</p>
+                <p>Nos enorgullece nuestra selección de cafés de origen, tostados a la perfección y preparados con amor por nuestros baristas expertos. Ven y descubre por qué somos el lugar favorito de muchos.</p>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact-info-section">
+            <h2>Contáctanos</h2>
+            <p>Estamos ubicados en: Av. Principal 123, Centro, Lima.</p>
+            <p>Teléfono: <a href="tel:+51987654321">+51 987 654 321</a></p>
+            <p>Email: <a href="mailto:info@caferuben.com">info@caferuben.com</a></p>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="Imagenes/Icono.png" alt="Logo Cafetería Rubén" class="navbar-logo-img">
+            RUBÉN
+        </div>
+        <div class="footer-nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#menu">Menú</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#resenas">Reseñas</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Cafetería Rubén. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <div class="pedido-sidebar" id="pedidoSidebar">
+        <span class="close-btn-pedido" id="closePedido">✕</span>
+        <h2>Mi Pedido</h2>
+        <ul id="listaPedido">
+            </ul>
+        <p id="total">Total: S/. 0.00</p>
+        <button class="btn-primary" id="finalizarPedidoBtn">Finalizar Pedido</button>
+        <button class="btn-secondary" id="vaciarPedidoBtn">Vaciar Pedido</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
